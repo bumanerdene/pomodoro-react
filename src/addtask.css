@@ -1,0 +1,56 @@
+.modalAdd{
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  font-size: 15px;
+}
+.inputTask input{
+width: 300px;
+height: 30px;
+border: none;
+border-radius:5px;
+background-color: black;
+opacity: 0.8;
+color: #fff;
+padding-left:20px;
+}
+.inputTask{
+display: flex;
+}
+.inputClock{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content:center;
+
+
+}
+.inputClock span{
+  font-size: 10px;
+  margin-left: 10px;
+  margin-right: 18px;
+}
+.inputClock input{
+  border-radius:30px;
+  font-size: 20px;
+  color: #fff;
+  width: 50px;
+  height: 30px;
+  border: none;
+  background-color: #FFDA83;
+  text-align: center;
+  margin-right: 10px;
+}
+.taskAdd{
+  border-radius: 50%;
+  font-size: 25px;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #FFDA83;
+  margin-left: 5px;
+}
+input:focus{
+  outline: none;
+}
