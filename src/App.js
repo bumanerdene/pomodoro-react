@@ -30,7 +30,8 @@ class App extends Component {
     this.setState({running: false});
     clearInterval(this.clock);
   }
-  handleStartBtn() { let m = this.state.minute;
+  handleStartBtn() {
+    let m = this.state.minute;
     let s = this.state.second;
     if (!this.state.running) {
       this.setState({running: true});
@@ -76,7 +77,8 @@ handleSubmit(e){
   }
   const newItem = {
     text: this.state.text,
-    time: this.state.time
+    time: this.state.time,
+    key: Date.now()
   };
 
   this.state.items.push(newItem);
@@ -88,17 +90,19 @@ handleSubmit(e){
 }
 gotoNext(){
   if(this.state.minute == 0 && this.state.items.length>0){
+
     this.setState({minute: this.state.items[0].time,
                   list: this.state.items[0].text});
-    alert(this.state.items.length);
+
 
   }
-  else {
+  else if(this.state.minute==0 && this.state.items.length==0){
+
   this.setState({items:[],
               minute: 0,
             list: '',
           text:''});
-    alert("end task maaan");
+    alert("End");
   }
 }
 handleChange(e){
@@ -117,8 +121,16 @@ handleChangeOption(event){
 }
 handleFinish(){
 clearInterval(this.clock);
-this.setState({minute: 0, second:0});
+this.state.items.shift();
+if(this.state.items.length>0){
+this.setState({minute: this.state.items[0].time, second:0, list:this.state.items[0].text, running:false});
 this.gotoNext();
+this.handleStartBtn();
+}
+else{
+this.setState({minute:0, second:0, list:'', running:false});
+}
+
 }
   render() {
     return (<div className='genericBody'>
@@ -135,9 +147,10 @@ this.gotoNext();
               <option value="25">Time</option>
               <option value="30">30</option>
               <option value="25">25</option>
-              <option value="2">20</option>
-              <option value="3">10</option>
-              <option value="1">5</option>
+              <option value="20">20</option>
+              <option value="15">15</option>
+              <option value="10">10</option>
+              <option value="5">5</option>
             </select>
         </form >
         <div className='taskList'>

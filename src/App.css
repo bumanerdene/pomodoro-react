@@ -20,7 +20,7 @@ margin-top: 10px;
 }
 .controlTask{
   display: grid;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 85% 15%;
   margin-top: 3px;
   padding-top: 2em;
   border-right: 1px solid rgba(0, 0,0,0.1);
@@ -75,7 +75,8 @@ option:focus{
   font-size: 12px;
 }
 .btnGroups{
-  margin: auto;
+margin-left: auto;
+margin-right: auto;
 }
 .startBtn{
 border: none;
