@@ -32,7 +32,7 @@
   "bundleDependencies": false,
   "dependencies": {
     "hammerjs": "^2.0.8",
-    "jquery": "^3.0.0 || ^2.1.4"
+    "jquery": "^3.0.0"
   },
   "deprecated": false,
   "description": "Builds Materialize distribution packages",
