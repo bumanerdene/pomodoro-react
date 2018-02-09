@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import {AddTask} from './addTask.js';
+import {AddTask} from './AddTask.js';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,20 +17,13 @@ class App extends Component {
       time: '25',
       counter: 0
     }
-    this.handleStopBtn = this.handleStopBtn.bind(this)
-    this.handleStartBtn = this.handleStartBtn.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleChangeOption = this.handleChangeOption.bind(this)
-    this.handleSubmit= this.handleSubmit.bind(this)
     this.gotoNext = this.gotoNext.bind(this)
-    this.handleFinish = this.handleFinish.bind(this)
-
-
   }
-  handleStopBtn() {
+  handleStopBtn=(e)=>{
+    e.preventDefault();
     this.setState({running: false});
     clearInterval(this.clock);
-  }
+  };
   handleStartBtn() {
     let m = this.state.minute;
     let s = this.state.second;
@@ -102,7 +96,7 @@ gotoNext(){
               minute: 0,
             list: '',
           text:''});
-    alert("End");
+    alert("No task to execute!");
   }
 }
 handleChange(e){
@@ -119,7 +113,7 @@ handleChangeOption(event){
       ? '0'
       : '') + number
 }
-handleFinish(){
+handleFinish=(e)=>{
 clearInterval(this.clock);
 this.state.items.shift();
 if(this.state.items.length>0){
@@ -138,12 +132,12 @@ this.setState({minute:0, second:0, list:'', running:false});
       <div className='nav2'><span> Pomodoro</span></div>
       <div className='controlTask'>
         <div className='tasks'>
-          <form className='addTask' onSubmit={this.handleSubmit}>
+          <form className='addTask' onSubmit={(e)=>this.handleSubmit(e)}>
 
             <button type='submit' className='addBtn'>+</button>
-            <input type='text' classname='inputTxt' placeholder='Add Task' onChange={this.handleChange} value={this.state.text}/>
+            <input type='text' classname='inputTxt' placeholder='Add Task' onChange={(e)=>this.handleChange(e)} value={this.state.text}/>
 
-            <select className='chooseOpt' onChange={this.handleChangeOption}>
+            <select className='chooseOpt' onChange={(e)=>this.handleChangeOption(e)}>
               <option value="25">Time</option>
               <option value="30">30</option>
               <option value="25">25</option>
@@ -158,14 +152,14 @@ this.setState({minute:0, second:0, list:'', running:false});
         </div>
         </div>
         <div className='btnGroups'>
-        <button className='startBtn' onClick={this.handleStartBtn}>Start</button>
-        <button className='stopBtn' onClick={this.handleStopBtn}>Stop</button>
+        <button className='startBtn' onClick={()=>this.handleStartBtn()}>Start</button>
+        <button className='stopBtn' onClick={(e)=>this.handleStopBtn(e)}>Stop</button>
       </div>
       </div>
       <div className='timeChild'>
         <div className='clock'>{this.pad(this.state.minute)}:{this.pad(this.state.second)}</div>
         <div className='task'>{this.state.list} </div>
-        <button className='finish' onClick={this.handleFinish}>Finish</button>
+        <button className='finish' onClick={(e)=> this.handleFinish(e)}>Finish</button>
       </div>
     </div>);
   }
